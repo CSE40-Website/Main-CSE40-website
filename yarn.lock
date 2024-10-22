@@ -1620,6 +1620,7 @@ queue-microtask@^1.2.2:
     r3f-vite-starter "file:"
     react "^18.2.0"
     react-dom "^18.2.0"
+    react-router-dom "^6.27.0"
     tailwindcss "^3.4.4"
     three "^0.166.1"
     three-stdlib "^2.30.4"
