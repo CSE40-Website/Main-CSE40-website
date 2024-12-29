@@ -105,7 +105,7 @@ const Page = ({
     `/textures/${front}.jpg`,
     `/textures/${back}.jpg`,
     ...(number === 0 || number === pages.length - 1
-      ? [`/textures/book-cover-roughness.jpg`]
+      ? [`/textures/DSC00680.jpg`]
       : []),
   ]);
   picture.colorSpace = picture2.colorSpace = SRGBColorSpace;
@@ -274,20 +274,31 @@ const Page = ({
       {isPageVisible && (
         <>
           {/* First HTML element */}
-          <Html position={[0, PAGE_HEIGHT / 2 - 0.5, 2.1]} distanceFactor={3}>
+          <Html position={[0, PAGE_HEIGHT / 2 - 0.5, 2.8]} distanceFactor={3}>
             <div
               style={{
                 backgroundColor: "rgba(255, 255, 255, 0.6)",
                 padding: "20px",
                 borderRadius: "8px",
-                boxShadow: "0 8px 16px rgba(0, 0, 0, 0.3)",
-                textAlign: "center",
-                width: "350px",
+                boxShadow: "0 8px 16px rgba(179, 177, 177, 0.3)",
+              
+                width: "500px",
                 position: "relative",
                 border: "1px solid #333",
+               
               }}
             >
+              <div style={{ textAlign:"center" ,fontSize: "30px", fontWeight: "bold", marginBottom: "10px" }}>
               <p>{description[0]}</p>
+
+              </div>
+             
+              <div style={{textAlign:"justify"}}>
+
+              <p>{description[1]}</p>
+
+              </div>
+             
 
               {/* Arrow on the right side */}
               <div
@@ -308,19 +319,30 @@ const Page = ({
 
           {/* Second HTML element */}
           <Html position={[0, PAGE_HEIGHT / 2 - 0.2, -1.2]} distanceFactor={3}>
-            <div
+          <div
               style={{
                 backgroundColor: "rgba(255, 255, 255, 0.6)",
                 padding: "20px",
                 borderRadius: "8px",
-                boxShadow: "0 8px 16px rgba(0, 0, 0, 0.3)",
-                textAlign: "center",
-                width: "350px",
+                boxShadow: "0 8px 16px rgba(179, 177, 177, 0.3)",
+              
+                width: "500px",
                 position: "relative",
                 border: "1px solid #333",
+               
               }}
             >
-              <p>{description[1]}</p>
+              <div style={{ textAlign:"center" ,fontSize: "30px", fontWeight: "bold", marginBottom: "10px" }}>
+              <p>{description[2]}</p>
+
+              </div>
+             
+              <div style={{textAlign:"justify"}}>
+
+              <p>{description[3]}</p>
+
+              </div>
+             
 
               {/* Arrow on the right side */}
               <div

@@ -2,8 +2,8 @@ import { atom, useAtom } from "jotai";
 import { useEffect } from "react";
 
 const pictures = [
-  "DSC00680",
-  "DSC00933",
+  "1.1",
+  "1.2",
   "DSC00966",
   "DSC00983",
   "DSC01011",
@@ -20,18 +20,28 @@ const pictures = [
   "DSC02069",
 ];
 
+
+// left side - 0,1 & right side - 2,3
 const descriptions = [
   {
-    0: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    0: "SLIoT Challenge - 2023",
+    1: "The Department of Computer Science and Engineering at the University of Moratuwa, in collaboration with SLT Mobitel and IESL, hosted the SLIoT Challenge 2023, an annual competition for innovative IoT solutions. Held in three categories—school, undergraduate, and open—the event aimed to raise IoT awareness among Sri Lankans, encouraging creative solutions to real-world challenges.",
+  
+    2: "Success at 25th National ICT Awards – NBQSA 2023",
+    3: "The 25th National ICT Awards – NBQSA 2023, held on October 25 at Monarch Imperial, was a landmark event celebrating Sri Lankan ICT innovation. Among the distinguished accomplishments, Dilith Jayakody, a student from the University of Moratuwa’s Department of Computer Science, earned the Bronze Award in the 'Research and Development Project of the Year' category for his final year project, “Reinforcement Learning-based Remote Sensing Index Generation,” supervised by Dr. Thanuja Ambegoda.",
   },
   {
-    0: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    0: "Lorem ipsum dolor sit amet",
     1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  },
+    2: "Lorem ipsum dolor sit amet",
+    3: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+
+  
+  }
+  ,
   {
-    0: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    0: "The University of Moratuwa Celebrates Success at 25th National ICT Awards – NBQSA 2023",
+    1: "The 25th National ICT Awards – NBQSA 2023, held on October 25 at Monarch Imperial, was a landmark event celebrating Sri Lankan ICT innovation. With H.E. President Ranil Wickremasinghe and Hon. State Minister of Technology Kanaka Herath as guests of honor, the event showcased notable ICT achievements. Among the distinguished accomplishments, Dilith Jayakody, a student from the University of Moratuwa’s Department of Computer Science, earned the Bronze Award in the 'Research and Development Project of the Year' category for his final year project, “Reinforcement Learning-based Remote Sensing Index Generation,” supervised by Dr. Thanuja Ambegoda.The Research and Development Project Award highlights groundbreaking contributions from academic and non-academic institutions, recognizing innovative projects that demonstrate their features and functionalities. This award not only honors Dilith’s work but also underscores the University of Moratuwa’s ongoing dedication to advancing ICT research and development. The department continues to support its students in achieving excellence in technology and research, reaffirming its role as a leader in Sri Lanka’s ICT sector.",
   },
   {
     0: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -100,7 +110,7 @@ export const UI = () => {
                 }`}
                 onClick={() => setPage(index)}
               >
-                {index === 0 ? "Cover" : `Page ${index}`}
+                {index === 0 ? "Cover" : `${index}`}
               </button>
             ))}
             <button
