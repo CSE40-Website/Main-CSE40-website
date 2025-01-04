@@ -3,12 +3,14 @@ import { Loader } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { Experience } from "./components/History/Experience";
+import {Quiz} from "./components/quiz/Quiz";
 import { UI } from "./components/History/UI";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/quiz" exact={true} element={<Quiz />} />
         <Route path="/history" exact={true}
           element={<>
             <UI />
