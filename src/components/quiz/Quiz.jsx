@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
+import { useAuthContext } from "@asgardeo/auth-react";
+
 
 const sampleQuestions = [
     {
@@ -23,6 +25,21 @@ const sampleQuestions = [
 ];
 
 export const Quiz = () => {
+
+    const authContext = useAuthContext();
+    console.log(authContext);
+    // if (!authContext) {
+    //     return <div>Loading...</div>;
+    // }
+    const { state, signIn, signOut } = authContext;
+
+    if (!state.isAuthenticated) {
+        console.log("User not authenticated");
+        return <button onClick={() => signIn()}>Login</button>;
+    }
+
+    console.log(`User ID: ${state.username}`);
+    // console.log(`Score: ${calculateScore()}`); // Assuming calculateScore is a function that calculates the user's score
     const [questions, setQuestions] = useState([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedOption, setSelectedOption] = useState('');
@@ -68,6 +85,7 @@ export const Quiz = () => {
 
     if (questions.length === 0) {
         return <div>Loading...</div>;
+
     }
 
     if (currentQuestionIndex >= questions.length) {

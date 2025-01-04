@@ -5,10 +5,23 @@ import { Suspense } from "react";
 import { Experience } from "./components/History/Experience";
 import {Quiz} from "./components/quiz/Quiz";
 import { UI } from "./components/History/UI";
+import { AuthProvider } from "@asgardeo/auth-react";
+
+
 
 function App() {
   return (
-    <BrowserRouter>
+
+    <AuthProvider
+    config={ {
+      signInRedirectURL: "http://localhost:5173/quiz",
+      signOutRedirectURL: "http://localhost:5173",
+      clientID: "fwep5rx2SVhNXG4pZBuVpPjIWEMa",
+      baseUrl: "https://api.asgardeo.io/t/mando",
+      scope: [ "openid","profile" ]
+    } }
+>
+<BrowserRouter>
       <Routes>
         <Route path="/quiz" exact={true} element={<Quiz />} />
         <Route path="/history" exact={true}
@@ -26,6 +39,8 @@ function App() {
         />
       </Routes>
     </BrowserRouter>
+</AuthProvider>
+    
   );
 }
 
