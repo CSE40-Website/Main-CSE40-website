@@ -26,19 +26,19 @@ const sampleQuestions = [
 
 export const Quiz = () => {
 
-    const authContext = useAuthContext();
-    console.log(authContext);
+    // const authContext = useAuthContext();
+    // console.log(authContext);
     // if (!authContext) {
     //     return <div>Loading...</div>;
     // }
-    const { state, signIn, signOut } = authContext;
+    // const { state, signIn, signOut } = authContext;
 
-    if (!state.isAuthenticated) {
-        console.log("User not authenticated");
-        return <button onClick={() => signIn()}>Login</button>;
-    }
+    // if (!state.isAuthenticated) {
+    //     console.log("User not authenticated");
+    //     return <button onClick={() => signIn()}>Login</button>;
+    // }
 
-    console.log(`User ID: ${state.username}`);
+    // console.log(`User ID: ${state.username}`);
     // console.log(`Score: ${calculateScore()}`); // Assuming calculateScore is a function that calculates the user's score
     const [questions, setQuestions] = useState([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
