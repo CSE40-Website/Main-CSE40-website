@@ -12,6 +12,7 @@ import QuizProvider from "./context/QuizProvider";
 import { GlobalStyles } from "./styles/Global";
 import { themes } from "./styles/Theme";
 import Main from "./components/Main/index.jsx";
+import { AuthProvider } from "@asgardeo/auth-react";
 
 function App() {
     const [currentTheme, setCurrentTheme] = useState(() => {
@@ -58,7 +59,16 @@ function App() {
                                 </>
                             }
                         />
-                        <Route path="/quiz" exact element={<Main />} />
+                        <Route
+                            path="/quiz"
+                            element={
+                                <AuthProvider
+                                    config={{}}
+                                >
+                                    <Main />
+                                </AuthProvider>
+                            }
+                        />
                     </Routes>
                 </BrowserRouter>
             </QuizProvider>

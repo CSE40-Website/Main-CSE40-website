@@ -8,15 +8,20 @@ import QuizDetailsScreen from '../QuizDetailsScreen/index.jsx';
 import QuizTopicsScreen from '../QuizTopicsScreen/index.jsx';
 import ResultScreen from '../ResultScreen/index.jsx';
 import SplashScreen from '../SplashScreen/index.jsx';
+import { useAuthContext } from "@asgardeo/auth-react";
 
 function Main() {
+  const { state, signIn } = useAuthContext();
   const { currentScreen, setCurrentScreen } = useQuiz();
 
   useEffect(() => {
-    setTimeout(() => {
-      setCurrentScreen(ScreenTypes.QuizTopicsScreen);
-    }, 1000);
-  }, [setCurrentScreen]);
+    if (state.isAuthenticated) {
+      console.log(`Logged in as: ${state.username}`);
+      setTimeout(() => {
+        setCurrentScreen(ScreenTypes.QuizTopicsScreen);
+      }, 1000);
+    }
+  }, [state.isAuthenticated, state.username, setCurrentScreen]);
 
   const screenComponents = {
     [ScreenTypes.SplashScreen]: <SplashScreen />,
@@ -27,6 +32,16 @@ function Main() {
   };
 
   const ComponentToRender = screenComponents[currentScreen] || <SplashScreen />;
+
+  if (!state.isAuthenticated) {
+    return (
+      <div>
+        <button onClick={() => signIn()} style={{ padding: "10px 20px", fontSize: "16px" }}>
+          Login
+        </button>
+      </div>
+    );
+  }
 
   return <>{ComponentToRender}</>;
 }
