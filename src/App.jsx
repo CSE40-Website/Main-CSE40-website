@@ -14,6 +14,16 @@ import { themes } from "./styles/Theme";
 import Main from "./components/Main/index.jsx";
 import { AuthProvider } from "@asgardeo/auth-react";
 
+
+const config = {
+    signInRedirectURL: "http://localhost:5173/quiz",
+    signOutRedirectURL: "http://localhost:5173",
+    clientID: "FW1vnMl0eiag7Xmq03D_U_rEfGEa",
+    baseUrl: "https://api.eu.asgardeo.io/t/cse40web",
+    scope: [ "openid","profile" ]
+};
+
+
 function App() {
     const [currentTheme, setCurrentTheme] = useState(() => {
         const savedTheme = localStorage.getItem("theme");
@@ -28,6 +38,8 @@ function App() {
 
     const theme = currentTheme === "light" ? themes.light : themes.dark;
 
+
+
     return (
         <ThemeProvider theme={theme}>
             <GlobalStyles />
@@ -40,6 +52,8 @@ function App() {
                         id="toggleTheme"
                         value="theme"
                     />
+
+
                     <Routes>
                         {/*<Route path="/quiz" exact element={<Quiz />} />*/}
                         <Route
@@ -63,7 +77,7 @@ function App() {
                             path="/quiz"
                             element={
                                 <AuthProvider
-                                    config={{}}
+                                    config={config}
                                 >
                                     <Main />
                                 </AuthProvider>
