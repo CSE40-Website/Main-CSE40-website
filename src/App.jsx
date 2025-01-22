@@ -13,8 +13,7 @@ import { GlobalStyles } from "./styles/Global";
 import { themes } from "./styles/Theme";
 import Main from "./components/Main/index.jsx";
 import { AuthProvider } from "@asgardeo/auth-react";
-
-
+import {MainLanding} from "./components/common/main.jsx";
 const config = {
     signInRedirectURL: "http://localhost:5173/quiz",
     signOutRedirectURL: "http://localhost:5173",
@@ -24,38 +23,38 @@ const config = {
 };
 
 
+
 function App() {
     const [currentTheme, setCurrentTheme] = useState(() => {
         const savedTheme = localStorage.getItem("theme");
         return savedTheme || "light";
     });
 
-    const toggleTheme = (e) => {
-        const { checked } = e.target;
-        setCurrentTheme(checked ? "dark" : "light");
-        localStorage.setItem("theme", checked ? "dark" : "light");
-    };
+    // const toggleTheme = (e) => {
+    //     const { checked } = e.target;
+    //     setCurrentTheme(checked ? "dark" : "light");
+    //     localStorage.setItem("theme", checked ? "dark" : "light");
+    // };
 
     const theme = currentTheme === "light" ? themes.light : themes.dark;
 
 
 
     return (
-        <ThemeProvider theme={theme}>
-            <GlobalStyles />
-            <QuizProvider>
+
                 <BrowserRouter>
-                    <ToggleTheme
-                        onChange={toggleTheme}
-                        currentTheme={currentTheme}
-                        checked={currentTheme === "dark"}
-                        id="toggleTheme"
-                        value="theme"
-                    />
+
+                    {/*<ToggleTheme*/}
+                    {/*    onChange={toggleTheme}*/}
+                    {/*    currentTheme={currentTheme}*/}
+                    {/*    checked={currentTheme === "dark"}*/}
+                    {/*    id="toggleTheme"*/}
+                    {/*    value="theme"*/}
+                    {/*/>*/}
 
 
                     <Routes>
-                        {/*<Route path="/quiz" exact element={<Quiz />} />*/}
+
                         <Route
                             path="/history"
                             exact
@@ -76,17 +75,23 @@ function App() {
                         <Route
                             path="/quiz"
                             element={
+                                <ThemeProvider theme={theme}>
+                                    <GlobalStyles />
+                                    <QuizProvider>
                                 <AuthProvider
                                     config={config}
                                 >
                                     <Main />
                                 </AuthProvider>
+                                    </QuizProvider>
+                                </ThemeProvider>
                             }
                         />
+
+                        <Route path={"/*"} element={<MainLanding />} />
                     </Routes>
                 </BrowserRouter>
-            </QuizProvider>
-        </ThemeProvider>
+
     );
 }
 

@@ -14,15 +14,24 @@ function Main() {
   const { state, signIn, signOut } = useAuthContext();
   const { currentScreen, setCurrentScreen } = useQuiz();
 
+  // useEffect(() => {
+  //   if (state.isAuthenticated) {
+  //     console.log(state)
+  //     console.log(`Logged in as: ${state.username}`);
+  //     setTimeout(() => {
+  //       setCurrentScreen(ScreenTypes.QuizTopicsScreen);
+  //     }, 1000);
+  //   }else{
+  //     signIn().then(r => console.log(r)).catch(e => console.log(e));
+  //
+  //   }
+  // }, [state.isAuthenticated]);
+
   useEffect(() => {
-    if (state.isAuthenticated) {
-      console.log(state)
-      console.log(`Logged in as: ${state.username}`);
-      setTimeout(() => {
-        setCurrentScreen(ScreenTypes.QuizTopicsScreen);
-      }, 1000);
-    }
-  }, [state.isAuthenticated, state.username, setCurrentScreen]);
+    setTimeout(() => {
+      setCurrentScreen(ScreenTypes.QuizTopicsScreen);
+    }, 1000);
+  },[])
 
 
 
@@ -35,19 +44,17 @@ function Main() {
   };
 
   const ComponentToRender = screenComponents[currentScreen] || <SplashScreen />;
-
-  if (!state.isAuthenticated) {
-    signIn().then(r => console.log(r)).catch(e => console.log(e));
-    return (
-      <>
-      </>
-    );
-  }
-
   return <>
-
     {ComponentToRender}
-  </>;
+  </>
+  // return <>
+  //   {state.isAuthenticated?
+  //       ComponentToRender:
+  //       <>
+  //       </>
+  //   }
+  //
+  // </>;
 }
 
 export default Main;
